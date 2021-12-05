@@ -1,9 +1,14 @@
 const timely = document.querySelector("#time");
 
+const clock = moment().format("h:mm a");
+let display = document.createElement("p");
+display.textContent = clock;
+timely.appendChild(display);
+
 function getTime() {
-  let now = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
-  let blah = document.createElement("h1");
-  blah.textContent = now;
+  let now = moment().format("dddd, MMMM Do YYYY");
+  let blah = document.createElement("p");
+  blah.textContent = "Today is " + now;
   timely.appendChild(blah);
 }
 
@@ -19,9 +24,15 @@ function getWeather() {
     .then(function (data) {
       console.log(data);
 
-      var tura = document.createElement("h5");
+      let tura = document.createElement("p");
       tura.textContent =
-        "The temperature is currently" + data.main.temp + " °F";
+        "The temperature is currently " +
+        data.main.temp +
+        " °F with a high of " +
+        data.main.temp_max +
+        " °F and a low of " +
+        data.main.temp_min +
+        " °F";
       timely.appendChild(tura);
     });
 }
