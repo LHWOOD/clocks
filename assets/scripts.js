@@ -1,19 +1,21 @@
 const timely = document.querySelector("#time");
 
+//current time
 const clock = moment().format("h:mm a");
 let display = document.createElement("p");
 display.textContent = clock;
 timely.appendChild(display);
 
-function getTime() {
+//grabs date
+function getDate() {
   let now = moment().format("dddd, MMMM Do YYYY");
   let blah = document.createElement("p");
   blah.textContent = "Today is " + now;
   timely.appendChild(blah);
 }
+getDate();
 
-getTime();
-
+//gets weather range
 function getWeather() {
   let requestUrl =
     "https://api.openweathermap.org/data/2.5/weather?zip=80127&units=imperial&appid=74f3ae2f827155ea451bd2e9b7cacb93";
@@ -36,5 +38,4 @@ function getWeather() {
       timely.appendChild(tura);
     });
 }
-
 getWeather();
